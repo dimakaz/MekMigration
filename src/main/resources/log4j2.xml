@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn">
+	<Properties>
+		<Property name="csvLog.fileName">C:/Develop/logs/csvLog</Property>
+	</Properties>
+
+    <Appenders>
+        <RollingFile name="csvFile" fileName="${csvLog.fileName}.csv" filePattern="${csvLog.filename}-%d{MM-dd-yyyy}-%i.csv" >
+            <CsvParameterLayout delimiter="," />
+            <PatternLayout>
+        		<Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5p %m%n</Pattern>
+    		</PatternLayout>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="200" />
+        </RollingFile>
+    </Appenders>
+	<Loggers>
+		<Root level="info" additivity="false">
+			<appender-ref ref="csvFile" />
+		</Root>
+	</Loggers>
+</Configuration>
